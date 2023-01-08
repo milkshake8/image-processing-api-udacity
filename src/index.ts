@@ -1,17 +1,14 @@
 import express from 'express'
-import routes from './routes/index'
-import FileHandler from './file_handling'
+import routes from './routes/index.js'
 
 const app: express.Application = express()
-const port: number = 3000
+const port: number = 3000 //default port
 
-// Add routes
-app.use(routes)
+//add the main route
+app.use('/api', routes)
 
-// Start server
-app.listen(port, async (): Promise<void> => {
-  await FileHandler.createThumbPath()
-  console.log(`serveur demarre sur http://localhost:${port}`)
+//start the server
+app.listen(port, () => {
+  console.log(`serveur demarre sur l'adresse http://localhost:${port}`)
 })
-
 export default app
